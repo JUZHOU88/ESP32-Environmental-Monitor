@@ -1,0 +1,13 @@
+name: C++ core tests
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile portable monitoring logic
+        run: g++ -std=c++17 -Wall -Wextra -Werror -Iinclude src/MonitorCore.cpp test/core_tests.cpp -o monitor_tests
+      - name: Run tests
+        run: ./monitor_tests
